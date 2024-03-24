@@ -51,7 +51,11 @@ In the table I showed the Precision, Recall, F1 score and  accuracy for three mo
     <td>0.53</td>
     <td>1.00</td>
     <td>1.00</td>
+<<<<<<< HEAD
     <td>0.9993832055687726</td>
+=======
+    <td>0.9993</td>
+>>>>>>> 6f9616fd0e63ea69647c262907a7b7d59cda21cd
   </tr>
   
   <tr>
@@ -86,6 +90,7 @@ Most important feature for training `Decision Tree`, `Random Forest` and `Gredie
 
 `Random Forest` performed best for `max depth = 30` and `n estimators = 75` where `n estimators` was `25, 50, 75` and `max depth` was `10, 20, 30, 40`. On the other hand, `Gredient Boosting` performed best for `max depth = 4` and `n estimators = 30` where `n estimators` was `20, 25, 30` and `max depth` was `2, 3, 4`.
 
+<<<<<<< HEAD
 `Mean Test Score` of `Gradient Boosting` is lower than `Random Forest`. But `Mean Fit Time` of `Gradient Boosting` is higher than `Random Forest`.
 
 
@@ -94,4 +99,9 @@ Most important feature for training `Decision Tree`, `Random Forest` and `Gredie
 From the image we can see there is a `Positive Correlation` between `Training Time` and `Estimators` for `Random Forest Classifier`.
 
 <img src="image/estimator_vs_training_time.PNG" alt="Positive Correlation" style="width:500px;height:400px;"> </br>
+=======
+
+`Mean Test Score` of `Gradient Boosting` is lower than `Random Forest`. But 
+`Mean Fit Time` of `Gradient Boosting` is higher than `Random Forest`.
+>>>>>>> 6f9616fd0e63ea69647c262907a7b7d59cda21cd
 
