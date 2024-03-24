@@ -37,63 +37,56 @@ In the table I showed the Precision, Recall, F1 score and  accuracy for three mo
       <th>Non-fraudulent</th>
       <th>fraudulent</th>
       <th>Non-fraudulent</th>
-      <th>fraudulent</th>
-      <th>Non-fraudulent</th>
+      <th>Training</th>
+      <th>Testing</th>
     </tr>
   </thead>
 <tbody>
   <tr>
     <td>Decision Tree</td>
-    <td>98.4</td>
-    <td>67.03</td>
-    <td>53.34</td>
-    <td>53.34</td>
-    <td>98.4</td>
-    <td>67.03</td>
-    <td>53.34</td>
-    <td>53.34</td>
+    <td>0.53</td>
+    <td>1.00</td>
+    <td>0.53</td>
+    <td>1.00</td>
+    <td>0.53</td>
+    <td>1.00</td>
+    <td>1.00</td>
+    <td>0.9993</td>
   </tr>
   
   <tr>
     <td>Random Forest</td>
-    <td>98.4</td>
-    <td>67.03</td>
-    <td>53.34</td>
-    <td>53.34</td>
-    <td>98.4</td>
-    <td>67.03</td>
-    <td>53.34</td>
-    <td>53.34</td>
+    <td>0.94</td>
+    <td>1.00</td>
+    <td>0.53</td>
+    <td>1.00</td>
+    <td>0.68</td>
+    <td>1.00</td>
+    <td>1.00</td>
+    <td>0.9997</td>
   </tr>
   
   <tr>
     <td>Gradient Boosting</td>
-    <td>98.4</td>
-    <td>67.03</td>
-    <td>53.34</td>
-    <td>53.34</td>
-    <td>98.4</td>
-    <td>67.03</td>
-    <td>53.34</td>
-    <td>53.34</td>
+    <td>0.03</td>
+    <td>1.00</td>
+    <td>0.80</td>
+    <td>0.99</td>
+    <td>0.07</td>
+    <td>0.99</td>
+    <td>0.9849</td>
+    <td>0.985</td>
   </tr>
   </tbody>
 </table>
 
-From the above table, we see that, multilabel accuracy are very closed for both the models. But, the F1 Score(Micro & Macro) of `distilroberta-base` is higher than `distilbert-base-uncased` model's F1 Score. So, we can say that, `distilroberta-base` performed slightly better for the given dataset.
+Most important feature for training `Decision Tree`, `Random Forest` and `Gredient Boosting` is `V14`.
 
-# Model Compression and ONNX Inference
-The trained model has a memory of 300+ MB. I compressed this model using ONNX quantization and brought it to ~78.8 MB.
+`Random Forest` is fitting 2 folds for each of 12 candidates, totalling 24 fits. On the other hand, `Gredient Boosting` is fitting 2 folds for each of 9 candidates, totalling 18 fits.
 
-# Model Deployment
-
-The compressed model is deployed to HuggingFace Spaces Gradio App. The implementation can be found in `deployment` folder or see live [here.](https://huggingface.co/spaces/MdTanvirHossain/QA_Classifier)
-
-<img src="deployment/gradio_app_2.PNG" alt="Girl in a jacket" style="width:1600px;height:400px;"> </br>
+`Random Forest` performed best for `max depth = 30` and `n estimators = 75` where `n estimators` was `25, 50, 75` and `max depth` was `10, 20, 30, 40`. On the other hand, `Gredient Boosting` performed best for `max depth = 4` and `n estimators = 30` where `n estimators` was `20, 25, 30` and `max depth` was `2, 3, 4`.
 
 
-# Web Deployment
-Deployed a Flask App built to take question description and show the categories as output. Check `flask` branch for the details. The website is live [here.](https://multilabel-question-category-classifier.onrender.com)
-</br></br>
-<img src="deployment/flask_app_home.PNG" alt="Girl in a jacket" style="width:1000px;height:500px;"></br></br>
-<img src="deployment/flask_app_result.PNG" alt="Girl in a jacket" style="width:1000px;height:500px;">
+`Mean Test Score` of `Gradient Boosting` is lower than `Random Forest`. But 
+`Mean Fit Time` of `Gradient Boosting` is higher than `Random Forest`.
+
